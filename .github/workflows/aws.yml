@@ -1,7 +1,7 @@
 name: CI/CD
 
 on:
-  #push:
+  push:
     branches:
       - main
 
@@ -79,7 +79,7 @@ jobs:
 
       - name: Deploy to EKS
         run: |
-          aws eks update-kubeconfig --region me-central-1 --name my-eks-cluster
+          aws eks update-kubeconfig --region me-central-1 --name ascode-cluster
           mkdir -p k8s
           export ECR_REPOSITORY_URL="590733205684.dkr.ecr.me-central-1.amazonaws.com/springboot:${GITHUB_SHA}"
           envsubst < k8s-deployment.yaml > k8s/k8s-deployment.yaml
